@@ -1,0 +1,26 @@
+{
+  "name": "gst_demo",
+  "version": "1.0.0",
+  "description": "Google & IBM Speech to Text Demo",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "owen",
+  "license": "MIT",
+  "dependencies": {
+    "@google-cloud/speech": "^0.11.0",
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.16.2",
+    "google-gax": "^0.14.2",
+    "morgan": "^1.9.0",
+    "path": "^0.12.7",
+    "subtitle": "^1.0.1",
+    "swig": "^1.4.2",
+    "watson-developer-cloud": "^2.42.0"
+  },
+  "devDependencies": {},
+  "keywords": []
+}

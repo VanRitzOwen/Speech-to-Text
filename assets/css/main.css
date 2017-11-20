@@ -1,0 +1,7 @@
+.value{
+    min-height: 200px;
+    height: auto;
+    width: 500px;
+    background-color: #eee;
+    margin-top: 30px;
+}

@@ -1,0 +1,60 @@
+{
+    "langList": [
+        {
+            "name": "葡萄牙语(低码率)",
+            "value": "pt_n"
+        },
+        {
+            "name": "法语(高码率)",
+            "value": "fr"
+        },
+        {
+            "name": "英语(美国，低码率)",
+            "value": "en-US_n"
+        },
+        {
+            "name": "英语(英国，高码率)",
+            "value": "en-GB"
+        },
+        {
+            "name": "中文(高码率)",
+            "value": "zh"
+        },
+        {
+            "name": "日语(高码率)",
+            "value": "ja"
+        },
+        {
+            "name": "英语(英国，低码率)",
+            "value": "en-GB_n"
+        },
+        {
+            "name": "西班牙语(高码率)",
+            "value": "es"
+        },
+        {
+            "name": "阿拉伯语(高码率)",
+            "value": "ar"
+        },
+        {
+            "name": "中文(低码率)",
+            "value": "zh_n"
+        },
+        {
+            "name": "日语(低码率)",
+            "value": "ja_n"
+        },
+        {
+            "name": "西班牙语(低码率)",
+            "value": "es_n"
+        },
+        {
+            "name": "葡萄牙语(高码率)",
+            "value": "pt"
+        },
+        {
+            "name": "英语(美国，高码率)",
+            "value": "en-US"
+        }
+    ]
+}
