@@ -1,0 +1,11 @@
+version: '2'
+services:
+  #nginx配置
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ~/gst/Speech-to-Text/config/:/etc/nginx/
+    ports:
+      - 80:80
+    network_mode: host
