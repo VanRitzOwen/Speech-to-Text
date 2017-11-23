@@ -119,7 +119,7 @@ router.get("/google", function (req,res) {
     };
     var config = {
         encoding: 'FLAC',
-        sampleRateHertz: 16000,
+        sampleRateHertz: 44100,
         languageCode: 'en-US',
         enableWordTimeOffsets: true
     };
