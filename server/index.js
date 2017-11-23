@@ -106,11 +106,22 @@ router.get("/ibm",function (req,res) {
 });
 
 router.get("/google", function (req,res) {
+    var qs = req.query;
     var client = new speech.SpeechClient({
         projectId: "esoteric-code-185509",
         keyFilename: global.server + "/config/try-apis-6175396ff69e.json"
     });
-    var fileName = global.server + '/assets/audio/audio-file.flac';
+    if(qs.type.toLowerCase() == 'flac' || qs.type.toLowerCase() == 'mp3'){
+        var encode = 'FLAC';
+        var hertz = 44100;
+    }else if(qs.type.toLowerCase() == 'wav'){
+        var encode = 'LINEAR16';
+        var hertz = 44100;
+    }else if(qs.type.toLowerCase() == 'ogg'){
+        var encode = 'OGG_OPUS';
+        var hertz = 16000;
+    }
+    var fileName = global.server + '/assets/audio/' + qs.file;
     var file = fs.readFileSync(fileName);
     var audioBytes = file.toString('base64');
 
@@ -118,9 +129,9 @@ router.get("/google", function (req,res) {
         content: audioBytes
     };
     var config = {
-        encoding: 'FLAC',
-        sampleRateHertz: 44100,
-        languageCode: 'en-US',
+        encoding: encode,
+        sampleRateHertz: hertz,
+        languageCode: qs.lang,
         enableWordTimeOffsets: true
     };
     var request = {
@@ -162,6 +173,7 @@ router.get("/google", function (req,res) {
                 console.log(`\t ${startSecs} secs - ${endSecs} secs`);
             });
         });
+    fs.writeFile(global.server + "/assets/result/transcriptionGoogle.txt",JSON.stringify(response.results, null, 2));
         res.send({
             errno: 0,
             result: response.results

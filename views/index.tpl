@@ -16,8 +16,14 @@
     <option value="{{ item.value }}">{{ item.name }}</option>
     {% endfor %}
 </select>
-<button id="google">Google Speech to Text</button>
 <button id="ibm">IBM Speech to Text</button>
+<select name="googleLang" id="googleLang">
+    {% for item in googleLang %}
+    <option value="{{ item.value }}">{{ item.name }}</option>
+    {% endfor %}
+</select>
+<button id="google">Google Speech to Text</button>
+
 <div class="value"></div>
 <script>
     var file = $("#file");
@@ -47,14 +53,23 @@
         })
     })
     $('#google').on('click', function () {
+        var file = $('#file').val().split('\\');
+        var fileName = file[file.length-1];
+        var type = fileName.split('.');
+        var fileType = type[type.length-1];
         $.ajax({
             type: "get",
             url: "/stt/google",
             data: {
-                file: file.val()
+                file: fileName,
+                type: fileType,
+                lang: $('#googleLang').val()
             },
             success: function (data) {
                 $('.value').eq(0).text(JSON.stringify(data,null,4));
+                if(data.errno == 0){
+                    window.location.href = '/result/transcriptionGoogle.txt';
+                }
             }
         })
     })
