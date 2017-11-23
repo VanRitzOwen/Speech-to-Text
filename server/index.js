@@ -164,7 +164,7 @@ router.get("/google", function (req,res) {
         });
         res.send({
             errno: 0,
-            result: response.result
+            result: response.results
         })
     })
     .catch(err => {

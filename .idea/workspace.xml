@@ -51,8 +51,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="513">
-                  <caret line="121" column="30" lean-forward="false" selection-start-line="121" selection-start-column="30" selection-end-line="121" selection-end-column="30" />
+                <state relative-caret-position="621">
+                  <caret line="166" column="36" lean-forward="false" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
                   <folding />
                 </state>
               </provider>
@@ -81,8 +81,8 @@
           <file leaf-file-name="example.json" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/config/example.json">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="20538">
-                  <caret line="1141" column="5" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="1141" selection-end-column="5" />
+                <state relative-caret-position="19926">
+                  <caret line="1107" column="63" lean-forward="true" selection-start-line="1107" selection-start-column="63" selection-end-line="1107" selection-end-column="63" />
                   <folding />
                 </state>
               </provider>
@@ -91,8 +91,8 @@
           <file leaf-file-name="index.tpl" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/views/index.tpl">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="756">
-                  <caret line="42" column="34" lean-forward="false" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
+                <state relative-caret-position="603">
+                  <caret line="55" column="38" lean-forward="true" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
                   <folding />
                 </state>
               </provider>
@@ -219,6 +219,11 @@
               <item name="GST_demo" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="GST_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GST_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="views" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -274,12 +279,12 @@
       <workItem from="1510543612406" duration="15144000" />
       <workItem from="1510921279045" duration="2890000" />
       <workItem from="1511142665523" duration="7090000" />
-      <workItem from="1511404757671" duration="1570000" />
+      <workItem from="1511404757671" duration="3061000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="69505000" />
+    <option name="totallyTimeSpent" value="70996000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="2560" height="1444" extended-state="6" />
@@ -590,26 +595,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/config/example.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="20538">
-          <caret line="1141" column="5" lean-forward="false" selection-start-line="2" selection-start-column="14" selection-end-line="1141" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/grpc/src/client.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="9162">
           <caret line="525" column="49" lean-forward="false" selection-start-line="525" selection-start-column="49" selection-end-line="525" selection-end-column="49" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/index.tpl">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="42" column="34" lean-forward="false" selection-start-line="42" selection-start-column="34" selection-end-line="42" selection-end-column="34" />
           <folding />
         </state>
       </provider>
@@ -653,10 +642,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/index.tpl">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="603">
+          <caret line="55" column="38" lean-forward="true" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/example.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19926">
+          <caret line="1107" column="63" lean-forward="true" selection-start-line="1107" selection-start-column="63" selection-end-line="1107" selection-end-column="63" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="121" column="30" lean-forward="false" selection-start-line="121" selection-start-column="30" selection-end-line="121" selection-end-column="30" />
+        <state relative-caret-position="621">
+          <caret line="166" column="36" lean-forward="false" selection-start-line="166" selection-start-column="36" selection-end-line="166" selection-end-column="36" />
           <folding />
         </state>
       </provider>
