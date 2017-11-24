@@ -199,7 +199,10 @@ router.get("/googless", function (req,res) {
 });
 
 router.get("/google", function (req,res) {
-    const storage = Storage();
+    const storage = Storage({
+        projectId: "esoteric-code-185509",
+        keyFilename: global.server + "/config/try-apis-6175396ff69e.json"
+    });
     const bucketName = "transgod";
     storage.createBucket(bucketName)
         .then(() => {
