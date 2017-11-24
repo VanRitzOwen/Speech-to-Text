@@ -113,7 +113,7 @@ router.get("/google", function (req,res) {
     });
     if(qs.type.toLowerCase() == 'flac' || qs.type.toLowerCase() == 'mp3'){
         var encode = 'FLAC';
-        var hertz = 44100;
+        var hertz = 22050;
     }else if(qs.type.toLowerCase() == 'wav'){
         var encode = 'LINEAR16';
         var hertz = 44100;
