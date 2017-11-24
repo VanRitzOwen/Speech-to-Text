@@ -3,7 +3,8 @@ var express = require('express'),
     SpeechToTextV1 = require('watson-developer-cloud/speech-to-text/v1'),
     fs = require('fs'),
     subtitle = require('subtitle'),
-    speech = require('@google-cloud/speech');
+    speech = require('@google-cloud/speech'),
+    Storage = require('@google-cloud/storage');
 
 router.get("/ibm",function (req,res) {
     var qs = req.query;
@@ -105,7 +106,7 @@ router.get("/ibm",function (req,res) {
     });
 });
 
-router.get("/google", function (req,res) {
+router.get("/googless", function (req,res) {
     var qs = req.query;
     var client = new speech.SpeechClient({
         projectId: "esoteric-code-185509",
@@ -195,6 +196,23 @@ router.get("/google", function (req,res) {
             msg: err
         })
     });
+});
+
+router.get("/google", function (req,res) {
+    const storage = Storage();
+    const bucketName = "transgod";
+    storage.createBucket(bucketName)
+        .then(() => {
+            console.log(`Bucket ${bucketName} created.`);
+            res.send({
+                errno: 0
+            })
+        }).catch(err => {
+            console.error('ERROR:', err);
+            res.send({
+                errno: 1
+            })
+        });
 });
 
 module.exports = router;
