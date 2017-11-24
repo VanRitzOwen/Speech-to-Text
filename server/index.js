@@ -106,9 +106,14 @@ router.get("/ibm",function (req,res) {
     });
 });
 
-router.get("/googless", function (req,res) {
+router.get("/google", function (req,res) {
     var qs = req.query;
+    var upload = false;
     var client = new speech.SpeechClient({
+        projectId: "esoteric-code-185509",
+        keyFilename: global.server + "/config/try-apis-6175396ff69e.json"
+    });
+    const storage = Storage({
         projectId: "esoteric-code-185509",
         keyFilename: global.server + "/config/try-apis-6175396ff69e.json"
     });
@@ -122,83 +127,91 @@ router.get("/googless", function (req,res) {
         var encode = 'OGG_OPUS';
         var hertz = 16000;
     }
-    // var fileName = global.server + '/assets/audio/' + qs.file;
+    var fileName = global.server + '/assets/audio/' + qs.file;
     // var file = fs.readFileSync(fileName);
     // var audioBytes = file.toString('base64');
-
+    const bucketName = 'transgod';
+    storage
+        .bucket(bucketName)
+        .upload(fileName)
+        .then(() => {
+            console.log(`${fileName} uploaded to ${bucketName}.`);
+            upload = true;
+        }).catch(err => {
+            console.error('ERROR:', err);
+            res.send({
+                errno:1,
+                msg: 'upload failed'
+            })
+        });
     // var audio = {
     //     content: audioBytes
     // };
-    // var config = {
-    //     encoding: encode,
-    //     sampleRateHertz: hertz,
-    //     languageCode: qs.lang,
-    //     enableWordTimeOffsets: true
-    // };
-    var audio = {
-        uri: 'https://drive.google.com/open?id=1d7Q-BbQykoaL_J4wNf53vNv1XQJUkKlt'
-    };
-    var config = {
-        encoding: 'FLAC',
-        sampleRateHertz: 48000,
-        languageCode: 'ru-RU',
-        enableWordTimeOffsets: true
-    };
-    var request = {
-        audio: audio,
-        config: config
-    };
-    client
-        .longRunningRecognize(request)
-        .then(data => {
-        const operation = data[0];
-        // Get a Promise representation of the final result of the job
-        return operation.promise();
-    })
-    .then(data => {
-        const response = data[0];
-        // const transcription = response.results
-        // .map(result => result.alternatives[0].transcript)
-        // .join('\n');
-        // console.log(`Transcription: ${transcription}`);
-        // fs.writeFile(global.server + "/assets/result/google_transcription.txt",transcription);
-        // res.send({
-        //     errno: 0,
-        //     result: transcription
-        // })
-        response.results.forEach(result => {
-            console.log(`Transcription: ${result.alternatives[0].transcript}`);
-            result.alternatives[0].words.forEach(wordInfo => {
-                // NOTE: If you have a time offset exceeding 2^32 seconds, use the
-                // wordInfo.{x}Time.seconds.high to calculate seconds.
-                const startSecs =
-                    `${wordInfo.startTime.seconds}` +
-                    `.` +
-                    wordInfo.startTime.nanos / 100000000;
-                const endSecs =
-                    `${wordInfo.endTime.seconds}` +
-                    `.` +
-                    wordInfo.endTime.nanos / 100000000;
-                console.log(`Word: ${wordInfo.word}`);
-                console.log(`\t ${startSecs} secs - ${endSecs} secs`);
+    if(upload){
+        var config = {
+            encoding: encode,
+            sampleRateHertz: hertz,
+            languageCode: qs.lang,
+            enableWordTimeOffsets: true
+        };
+        var audio = {
+            uri: `gs://${bucketName}/${qs.file}`
+        };
+
+        var request = {
+            audio: audio,
+            config: config
+        };
+        client
+            .longRunningRecognize(request)
+            .then(data => {
+                const operation = data[0];
+                // Get a Promise representation of the final result of the job
+                return operation.promise();
+            }).then(data => {
+                const response = data[0];
+                // const transcription = response.results
+                // .map(result => result.alternatives[0].transcript)
+                // .join('\n');
+                // console.log(`Transcription: ${transcription}`);
+                // fs.writeFile(global.server + "/assets/result/google_transcription.txt",transcription);
+                // res.send({
+                //     errno: 0,
+                //     result: transcription
+                // })
+                response.results.forEach(result => {
+                    console.log(`Transcription: ${result.alternatives[0].transcript}`);
+                    result.alternatives[0].words.forEach(wordInfo => {
+                        // NOTE: If you have a time offset exceeding 2^32 seconds, use the
+                        // wordInfo.{x}Time.seconds.high to calculate seconds.
+                        const startSecs =
+                            `${wordInfo.startTime.seconds}` +
+                            `.` +
+                            wordInfo.startTime.nanos / 100000000;
+                        const endSecs =
+                            `${wordInfo.endTime.seconds}` +
+                            `.` +
+                            wordInfo.endTime.nanos / 100000000;
+                        console.log(`Word: ${wordInfo.word}`);
+                        console.log(`\t ${startSecs} secs - ${endSecs} secs`);
+                    });
+                });
+                fs.writeFile(global.server + "/assets/result/transcriptionGoogle.txt",JSON.stringify(response.results, null, 2));
+                res.send({
+                    errno: 0,
+                    result: response.results
+                })
+            }).catch(err => {
+                console.error('ERROR:', err);
+                res.send({
+                    errno: 1,
+                    msg: err
+                })
             });
-        });
-    fs.writeFile(global.server + "/assets/result/transcriptionGoogle.txt",JSON.stringify(response.results, null, 2));
-        res.send({
-            errno: 0,
-            result: response.results
-        })
-    })
-    .catch(err => {
-        console.error('ERROR:', err);
-        res.send({
-            errno: 1,
-            msg: err
-        })
-    });
+    }
 });
 
-router.get("/google", function (req,res) {
+router.get("/google-bucket", function (req,res) {
     const storage = Storage({
         projectId: "esoteric-code-185509",
         keyFilename: global.server + "/config/try-apis-6175396ff69e.json"
