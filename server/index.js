@@ -113,7 +113,7 @@ router.get("/google", function (req,res) {
     });
     if(qs.type.toLowerCase() == 'flac' || qs.type.toLowerCase() == 'mp3'){
         var encode = 'FLAC';
-        var hertz = 44100;
+        var hertz = 48000;
     }else if(qs.type.toLowerCase() == 'wav'){
         var encode = 'LINEAR16';
         var hertz = 44100;
@@ -121,17 +121,26 @@ router.get("/google", function (req,res) {
         var encode = 'OGG_OPUS';
         var hertz = 16000;
     }
-    var fileName = global.server + '/assets/audio/' + qs.file;
-    var file = fs.readFileSync(fileName);
-    var audioBytes = file.toString('base64');
+    // var fileName = global.server + '/assets/audio/' + qs.file;
+    // var file = fs.readFileSync(fileName);
+    // var audioBytes = file.toString('base64');
 
+    // var audio = {
+    //     content: audioBytes
+    // };
+    // var config = {
+    //     encoding: encode,
+    //     sampleRateHertz: hertz,
+    //     languageCode: qs.lang,
+    //     enableWordTimeOffsets: true
+    // };
     var audio = {
-        content: audioBytes
+        uri: 'https://drive.google.com/open?id=1d7Q-BbQykoaL_J4wNf53vNv1XQJUkKlt'
     };
     var config = {
-        encoding: encode,
-        sampleRateHertz: hertz,
-        languageCode: qs.lang,
+        encoding: 'FLAC',
+        sampleRateHertz: 48000,
+        languageCode: 'ru-RU',
         enableWordTimeOffsets: true
     };
     var request = {
