@@ -108,7 +108,7 @@ router.get("/ibm",function (req,res) {
 
 router.get("/google", function (req,res) {
     var qs = req.query;
-    var upload = false;
+    var upload = true;
     var client = new speech.SpeechClient({
         projectId: "esoteric-code-185509",
         keyFilename: global.server + "/config/try-apis-6175396ff69e.json"
@@ -131,31 +131,37 @@ router.get("/google", function (req,res) {
     // var file = fs.readFileSync(fileName);
     // var audioBytes = file.toString('base64');
     const bucketName = 'transgod';
-    storage
-        .bucket(bucketName)
-        .upload(fileName)
-        .then(() => {
-            console.log(`${fileName} uploaded to ${bucketName}.`);
-            upload = true;
-        }).catch(err => {
-            console.error('ERROR:', err);
-            res.send({
-                errno:1,
-                msg: 'upload failed'
-            })
-        });
+    // storage
+    //     .bucket(bucketName)
+    //     .upload(fileName)
+    //     .then(() => {
+    //         console.log(`${fileName} uploaded to ${bucketName}.`);
+    //         upload = true;
+    //     }).catch(err => {
+    //         console.error('ERROR:', err);
+    //         res.send({
+    //             errno:1,
+    //             msg: 'upload failed'
+    //         })
+    //     });
     // var audio = {
     //     content: audioBytes
     // };
     if(upload){
+        // var config = {
+        //     encoding: encode,
+        //     sampleRateHertz: hertz,
+        //     languageCode: qs.lang,
+        //     enableWordTimeOffsets: true
+        // };
         var config = {
-            encoding: encode,
-            sampleRateHertz: hertz,
-            languageCode: qs.lang,
+            encoding: 'GOO_OPUS',
+            sampleRateHertz: 16000,
+            languageCode: 'en-GB',
             enableWordTimeOffsets: true
         };
         var audio = {
-            uri: `gs://${bucketName}/${qs.file}`
+            uri: `gs://${bucketName}/语音测试男mono.ogg`
         };
 
         var request = {

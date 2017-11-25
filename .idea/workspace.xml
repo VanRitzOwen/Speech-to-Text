@@ -31,8 +31,8 @@
           <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/server/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="513">
-                  <caret line="157" column="48" lean-forward="true" selection-start-line="157" selection-start-column="48" selection-end-line="157" selection-end-column="48" />
+                <state relative-caret-position="927">
+                  <caret line="159" column="34" lean-forward="true" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
                   <folding />
                 </state>
               </provider>
@@ -173,6 +173,12 @@
             <path>
               <item name="GST_demo" type="b2602c69:ProjectViewProjectNode" />
               <item name="GST_demo" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="audio" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="GST_demo" type="b2602c69:ProjectViewProjectNode" />
+              <item name="GST_demo" type="462c0819:PsiDirectoryNode" />
               <item name="config" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -240,12 +246,12 @@
       <workItem from="1510921279045" duration="2890000" />
       <workItem from="1511142665523" duration="7090000" />
       <workItem from="1511404757671" duration="9671000" />
-      <workItem from="1511442485162" duration="3991000" />
+      <workItem from="1511442485162" duration="5206000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="81597000" />
+    <option name="totallyTimeSpent" value="82812000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="-4" width="2560" height="1444" extended-state="6" />
@@ -613,8 +619,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/server/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="157" column="48" lean-forward="true" selection-start-line="157" selection-start-column="48" selection-end-line="157" selection-end-column="48" />
+        <state relative-caret-position="927">
+          <caret line="159" column="34" lean-forward="true" selection-start-line="159" selection-start-column="34" selection-end-line="159" selection-end-column="34" />
           <folding />
         </state>
       </provider>
