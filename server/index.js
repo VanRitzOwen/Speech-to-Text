@@ -155,7 +155,7 @@ router.get("/google", function (req,res) {
         //     enableWordTimeOffsets: true
         // };
         var config = {
-            encoding: 'GOO_OPUS',
+            encoding: 'OGG_OPUS',
             sampleRateHertz: 16000,
             languageCode: 'en-GB',
             enableWordTimeOffsets: true
