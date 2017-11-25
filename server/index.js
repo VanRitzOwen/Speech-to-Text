@@ -161,7 +161,7 @@ router.get("/google", function (req,res) {
             enableWordTimeOffsets: true
         };
         var audio = {
-            uri: `gs://${bucketName}/语音测试男mono.ogg`
+            uri: 'gs://transgod/语音测试男mono.ogg'
         };
 
         var request = {
