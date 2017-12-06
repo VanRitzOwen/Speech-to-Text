@@ -23,6 +23,7 @@
     {% endfor %}
 </select>
 <button id="google">Google Speech to Text</button>
+<button id="baidu">Baidu Cloud</button>
 
 <div class="value"></div>
 <script>
@@ -69,6 +70,28 @@
                 $('.value').eq(0).text(JSON.stringify(data,null,4));
                 if(data.errno == 0){
                     window.location.href = '/result/transcriptionGoogle.txt';
+                }
+            }
+        })
+    })
+    $('#baidu').on('click', function () {
+        var file = $('#file').val().split('\\');
+        var fileName = file[file.length-1];
+        var type = fileName.split('.');
+        var fileType = type[type.length-1];
+        $.ajax({
+            type: "get",
+            url: "/stt/baidu",
+            data: {
+                file: fileName,
+                type: fileType,
+                lang: $('#googleLang').val()
+            },
+            success: function (data) {
+                $('.value').eq(0).text(JSON.stringify(data,null,4));
+                if(data.errno == 0){
+                    // window.location.href = '/result/transcriptionGoogle.txt';
+                    alert("百度转录完成");
                 }
             }
         })

@@ -4,7 +4,8 @@ var express = require('express'),
     fs = require('fs'),
     subtitle = require('subtitle'),
     speech = require('@google-cloud/speech'),
-    Storage = require('@google-cloud/storage');
+    Storage = require('@google-cloud/storage'),
+    AipSpeechClient = require("baidu-aip-sdk").speech;
 
 router.get("/ibm",function (req,res) {
     var qs = req.query;
@@ -84,23 +85,24 @@ router.get("/ibm",function (req,res) {
         }
         else{
             console.log(JSON.stringify(transcript, null, 2));
-            // var subs = [];
-            // var result = transcript.results;
-            // for(var i = 0; i < result.length;i++){
-            //     var timestamps = result[i].alternatives[0].timestamps;
-            //     for(var k = 0; k < timestamps.length; k++){
-            //         subs.push({
-            //             start: timestamps[k][1]*1000,
-            //             end: timestamps[k][2]*1000,
-            //             text: timestamps[k][0]
-            //         })
-            //     }
-            // }
-            // var srt = subtitle.stringify(subs);
-            fs.writeFile(global.server + "/assets/result/transcription.txt",JSON.stringify(transcript, null, 2));
+            var subs = [];
+            var result = transcript.results;
+            for(var i = 0; i < result.length;i++){
+                var timestamps = result[i].alternatives[0].timestamps;
+                for(var k = 0; k < timestamps.length; k++){
+                    subs.push({
+                        start: timestamps[k][1]*1000,
+                        end: timestamps[k][2]*1000,
+                        text: timestamps[k][0]
+                    })
+                }
+            }
+            var srt = subtitle.stringify(subs);
+            // fs.writeFile(global.server + "/assets/result/transcription.txt",JSON.stringify(transcript, null, 2));
+            fs.writeFile(global.server + "/assets/result/transcription.srt",srt);
             res.json({
                 errno: 0,
-                result: JSON.stringify(transcript, null, 2)
+                result: srt
             })
         }
     });
@@ -237,4 +239,23 @@ router.get("/google-bucket", function (req,res) {
         });
 });
 
+router.get("/baidu", function (req,res) {
+    var qs = req.query;
+    // 设置APPID/AK/SK
+    var APP_ID = "10486274";
+    var API_KEY = "SzQNqWCGINF3qEidZzLo9oMs";
+    var SECRET_KEY = "bhSVTtrtera9TtHLPoL1jrqwobfic32T";
+
+    var client = new AipSpeechClient(APP_ID, API_KEY, SECRET_KEY);
+    var voice = fs.readFileSync(global.server + '/assets/audio/' + qs.file);
+
+    var voiceBuffer = new Buffer(voice);
+
+    client.recognize(voiceBuffer, 'amr', 8000, {lan: 'en',cuid: Math.random()})
+        .then(function (result) {
+            console.log('<recognize>: ' + JSON.stringify(result));
+        }, function(err) {
+            console.log(err);
+        });
+});
 module.exports = router;
