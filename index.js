@@ -35,6 +35,11 @@ app.get("/",function (req,res) {
     res.render('index.tpl',langList);
 });
 
+app.get("/sign",function (req,res) {
+    res.render('sign.tpl');
+});
+
 app.use("/stt",require("./server"));
+app.use("/api",require("./api"));
 
 app.listen(8085);
